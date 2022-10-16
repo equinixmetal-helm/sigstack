@@ -5,10 +5,10 @@ kind: ServiceAccount
 metadata:
   name: sigstack-dex
   labels:
-    helm.sh/chart: dex-0.9.0
+    helm.sh/chart: dex-0.12.0
     app.kubernetes.io/name: dex
     app.kubernetes.io/instance: sigstack
-    app.kubernetes.io/version: "2.32.0"
+    app.kubernetes.io/version: "2.35.1"
     app.kubernetes.io/managed-by: Helm
 ---
 # Source: sigstack/charts/fulcio/charts/ctlog/templates/createctconfig-serviceaccount.yaml
@@ -18,7 +18,7 @@ metadata:
   name: sigstack-ctlog-createctconfig
   namespace: sigstack
   labels:
-    helm.sh/chart: ctlog-0.2.24
+    helm.sh/chart: ctlog-0.2.27
     app.kubernetes.io/name: ctlog
     app.kubernetes.io/instance: sigstack
     app.kubernetes.io/version: "0.3.0"
@@ -33,7 +33,7 @@ metadata:
   name: ctlog-createtree
   namespace: sigstack
   labels:
-    helm.sh/chart: ctlog-0.2.24
+    helm.sh/chart: ctlog-0.2.27
     app.kubernetes.io/name: ctlog
     app.kubernetes.io/instance: sigstack
     app.kubernetes.io/version: "0.3.0"
@@ -48,7 +48,7 @@ metadata:
   name: ctlog
   namespace: sigstack
   labels:
-    helm.sh/chart: ctlog-0.2.24
+    helm.sh/chart: ctlog-0.2.27
     app.kubernetes.io/name: ctlog
     app.kubernetes.io/instance: sigstack
     app.kubernetes.io/version: "0.3.0"
@@ -63,10 +63,10 @@ metadata:
   name: sigstack-fulcio-createcerts
   namespace: sigstack
   labels:
-    helm.sh/chart: fulcio-0.4.8
+    helm.sh/chart: fulcio-1.0.0-rc.1
     app.kubernetes.io/name: fulcio
     app.kubernetes.io/instance: sigstack
-    app.kubernetes.io/version: "0.5.2"
+    app.kubernetes.io/version: "1.0.0-rc.1"
     app.kubernetes.io/managed-by: Helm
   annotations:
     {}
@@ -78,10 +78,10 @@ metadata:
   name: sigstack-fulcio-server
   namespace: sigstack
   labels:
-    helm.sh/chart: fulcio-0.4.8
+    helm.sh/chart: fulcio-1.0.0-rc.1
     app.kubernetes.io/name: fulcio
     app.kubernetes.io/instance: sigstack
-    app.kubernetes.io/version: "0.5.2"
+    app.kubernetes.io/version: "1.0.0-rc.1"
     app.kubernetes.io/managed-by: Helm
   annotations:
     {}
@@ -182,33 +182,14 @@ kind: Secret
 metadata:
   name: sigstack-dex
   labels:
-    helm.sh/chart: dex-0.9.0
+    helm.sh/chart: dex-0.12.0
     app.kubernetes.io/name: dex
     app.kubernetes.io/instance: sigstack
-    app.kubernetes.io/version: "2.32.0"
+    app.kubernetes.io/version: "2.35.1"
     app.kubernetes.io/managed-by: Helm
 type: Opaque
 data:
   config.yaml: "Y29ubmVjdG9yczoKLSBjb25maWc6CiAgICBjbGllbnRJRDogZWI3ZDNhNWNiYmE4MTE4YTA4NmEKICAgIGNsaWVudFNlY3JldDogMjRmMTQ3ZjJjNDM3ZDEwNmE5ZDZkYjljOTRjYTcyZWFkODg5MjI5YQogICAgcmVkaXJlY3RVUkk6IGh0dHA6Ly9zaWdzdGFjay1kZXguc2lnc3RhY2suc3ZjOjU1NTYvY2FsbGJhY2sKICBpZDogc2lnc3RhY2stZGV2CiAgbmFtZTogR2l0SHViCiAgdHlwZTogZ2l0aHViCmVuYWJsZVBhc3N3b3JkREI6IHRydWUKZnJvbnRlbmQ6CiAgaXNzdWVyOiBzaWdzdGFjawppc3N1ZXI6IGh0dHA6Ly9zaWdzdGFjay1kZXguc2lnc3RhY2suc3ZjOjU1NTYKb2F1dGgyOgogIHJlc3BvbnNlVHlwZXM6CiAgLSBjb2RlCnN0YXRpY0NsaWVudHM6Ci0gaWQ6IHNpZ3N0YWNrCiAgbmFtZTogc2lnc3RhY2sKICBwdWJsaWM6IHRydWUKc3RvcmFnZToKICB0eXBlOiBtZW1vcnk="
----
-# Source: sigstack/charts/rekor/charts/trillian/templates/mysql/secret.yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  labels:
-    app.kubernetes.io/component: "mysql"
-    app.kubernetes.io/name: trillian
-    app.kubernetes.io/instance: sigstack
-    helm.sh/chart: trillian-0.1.10
-    app.kubernetes.io/managed-by: Helm
-  name: trillian-mysql
-  namespace: sigstack
-type: Opaque
-data:
-  mysql-root-password: "cFVCemduRm93RQ=="
-  mysql-password: "S0lCM0tLOWpwQQ=="
-  mysql-user: "bXlzcWw="
-  mysql-database:  "dHJpbGxpYW4="
 ---
 # Source: sigstack/charts/fulcio/charts/ctlog/templates/ctlog-configmap.yaml
 apiVersion: v1
@@ -217,7 +198,7 @@ metadata:
   name: ctlog-config
   namespace: sigstack
   labels:
-    helm.sh/chart: ctlog-0.2.24
+    helm.sh/chart: ctlog-0.2.27
     app.kubernetes.io/name: ctlog
     app.kubernetes.io/instance: sigstack
     app.kubernetes.io/version: "0.3.0"
@@ -236,10 +217,10 @@ metadata:
   name: sigstack-fulcio-server-config
   namespace: sigstack
   labels:
-    helm.sh/chart: fulcio-0.4.8
+    helm.sh/chart: fulcio-1.0.0-rc.1
     app.kubernetes.io/name: fulcio
     app.kubernetes.io/instance: sigstack
-    app.kubernetes.io/version: "0.5.2"
+    app.kubernetes.io/version: "1.0.0-rc.1"
     app.kubernetes.io/managed-by: Helm
 data:
   config.json: |-
@@ -331,10 +312,10 @@ kind: ClusterRole
 metadata:
   name: sigstack-dex
   labels:
-    helm.sh/chart: dex-0.9.0
+    helm.sh/chart: dex-0.12.0
     app.kubernetes.io/name: dex
     app.kubernetes.io/instance: sigstack
-    app.kubernetes.io/version: "2.32.0"
+    app.kubernetes.io/version: "2.35.1"
     app.kubernetes.io/managed-by: Helm
 rules:
   - apiGroups: ["apiextensions.k8s.io"]
@@ -347,10 +328,10 @@ kind: ClusterRoleBinding
 metadata:
   name: sigstack-dex-cluster
   labels:
-    helm.sh/chart: dex-0.9.0
+    helm.sh/chart: dex-0.12.0
     app.kubernetes.io/name: dex
     app.kubernetes.io/instance: sigstack
-    app.kubernetes.io/version: "2.32.0"
+    app.kubernetes.io/version: "2.35.1"
     app.kubernetes.io/managed-by: Helm
 roleRef:
   kind: ClusterRole
@@ -381,10 +362,10 @@ kind: Role
 metadata:
   name: sigstack-dex
   labels:
-    helm.sh/chart: dex-0.9.0
+    helm.sh/chart: dex-0.12.0
     app.kubernetes.io/name: dex
     app.kubernetes.io/instance: sigstack
-    app.kubernetes.io/version: "2.32.0"
+    app.kubernetes.io/version: "2.35.1"
     app.kubernetes.io/managed-by: Helm
 rules:
   - apiGroups: ["dex.coreos.com"]
@@ -398,7 +379,7 @@ metadata:
   name: ctlog-cm-operator
   namespace: sigstack
   labels:
-    helm.sh/chart: ctlog-0.2.24
+    helm.sh/chart: ctlog-0.2.27
     app.kubernetes.io/name: ctlog
     app.kubernetes.io/instance: sigstack
     app.kubernetes.io/version: "0.3.0"
@@ -416,7 +397,7 @@ metadata:
   name: ctlog-secret-operator
   namespace: sigstack
   labels:
-    helm.sh/chart: ctlog-0.2.24
+    helm.sh/chart: ctlog-0.2.27
     app.kubernetes.io/name: ctlog
     app.kubernetes.io/instance: sigstack
     app.kubernetes.io/version: "0.3.0"
@@ -437,10 +418,10 @@ metadata:
   name: sigstack-fulcio-server-secret-operator
   namespace: sigstack
   labels:
-    helm.sh/chart: fulcio-0.4.8
+    helm.sh/chart: fulcio-1.0.0-rc.1
     app.kubernetes.io/name: fulcio
     app.kubernetes.io/instance: sigstack
-    app.kubernetes.io/version: "0.5.2"
+    app.kubernetes.io/version: "1.0.0-rc.1"
     app.kubernetes.io/managed-by: Helm
 rules:
   - apiGroups: [""] # "" indicates the core API group
@@ -471,10 +452,10 @@ kind: RoleBinding
 metadata:
   name: sigstack-dex
   labels:
-    helm.sh/chart: dex-0.9.0
+    helm.sh/chart: dex-0.12.0
     app.kubernetes.io/name: dex
     app.kubernetes.io/instance: sigstack
-    app.kubernetes.io/version: "2.32.0"
+    app.kubernetes.io/version: "2.35.1"
     app.kubernetes.io/managed-by: Helm
 roleRef:
   kind: Role
@@ -492,7 +473,7 @@ metadata:
   name: ctlog-cm-operator
   namespace: sigstack
   labels:
-    helm.sh/chart: ctlog-0.2.24
+    helm.sh/chart: ctlog-0.2.27
     app.kubernetes.io/name: ctlog
     app.kubernetes.io/instance: sigstack
     app.kubernetes.io/version: "0.3.0"
@@ -513,7 +494,7 @@ metadata:
   name: ctlog-secret-operator
   namespace: sigstack
   labels:
-    helm.sh/chart: ctlog-0.2.24
+    helm.sh/chart: ctlog-0.2.27
     app.kubernetes.io/name: ctlog
     app.kubernetes.io/instance: sigstack
     app.kubernetes.io/version: "0.3.0"
@@ -534,10 +515,10 @@ metadata:
   name: sigstack-fulcio-server-secret-operator
   namespace: sigstack
   labels:
-    helm.sh/chart: fulcio-0.4.8
+    helm.sh/chart: fulcio-1.0.0-rc.1
     app.kubernetes.io/name: fulcio
     app.kubernetes.io/instance: sigstack
-    app.kubernetes.io/version: "0.5.2"
+    app.kubernetes.io/version: "1.0.0-rc.1"
     app.kubernetes.io/managed-by: Helm
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -575,10 +556,10 @@ kind: Service
 metadata:
   name: sigstack-dex
   labels:
-    helm.sh/chart: dex-0.9.0
+    helm.sh/chart: dex-0.12.0
     app.kubernetes.io/name: dex
     app.kubernetes.io/instance: sigstack
-    app.kubernetes.io/version: "2.32.0"
+    app.kubernetes.io/version: "2.35.1"
     app.kubernetes.io/managed-by: Helm
 spec:
   type: ClusterIP
@@ -602,7 +583,7 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    helm.sh/chart: ctlog-0.2.24
+    helm.sh/chart: ctlog-0.2.27
     app.kubernetes.io/name: ctlog
     app.kubernetes.io/instance: sigstack
     app.kubernetes.io/version: "0.3.0"
@@ -629,10 +610,10 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    helm.sh/chart: fulcio-0.4.8
+    helm.sh/chart: fulcio-1.0.0-rc.1
     app.kubernetes.io/name: fulcio
     app.kubernetes.io/instance: sigstack
-    app.kubernetes.io/version: "0.5.2"
+    app.kubernetes.io/version: "1.0.0-rc.1"
     app.kubernetes.io/managed-by: Helm
   name: sigstack-fulcio-server
   namespace: sigstack
@@ -789,10 +770,10 @@ kind: Deployment
 metadata:
   name: sigstack-dex
   labels:
-    helm.sh/chart: dex-0.9.0
+    helm.sh/chart: dex-0.12.0
     app.kubernetes.io/name: dex
     app.kubernetes.io/instance: sigstack
-    app.kubernetes.io/version: "2.32.0"
+    app.kubernetes.io/version: "2.35.1"
     app.kubernetes.io/managed-by: Helm
 spec:
   replicas: 1
@@ -804,7 +785,7 @@ spec:
     metadata:
       annotations:
       
-        checksum/config: 6d14093c5a80248dda317f6ad41d8455453fe27eabda97c820541b75b0aa0979
+        checksum/config: 7a5d700caab070581e767e1bf84f9743d7ddcbbe3a81ad3c726d17282cd5e5ab
       labels:
         app.kubernetes.io/name: dex
         app.kubernetes.io/instance: sigstack
@@ -816,7 +797,7 @@ spec:
         - name: dex
           securityContext:
             {}
-          image: "ghcr.io/dexidp/dex:v2.35.3"
+          image: "ghcr.io/dexidp/dex:v2.35.1"
           imagePullPolicy: IfNotPresent
           args:
             - dex
@@ -860,7 +841,7 @@ metadata:
   name: ctlog
   namespace: sigstack
   labels:
-    helm.sh/chart: ctlog-0.2.24
+    helm.sh/chart: ctlog-0.2.27
     app.kubernetes.io/name: ctlog
     app.kubernetes.io/instance: sigstack
     app.kubernetes.io/version: "0.3.0"
@@ -874,7 +855,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: d8a9dd8ee49788915afb33f979bc4f87c0c694e91c234a622c4032bd658a31e2
+        checksum/config: 722ecc0b711f0795e58cf518a9ff374a8d56ff2e19d8c6e5e3812740ebc43beb
         prometheus.io/path: /metrics
         prometheus.io/port: "6963"
         prometheus.io/scrape: "true"
@@ -932,10 +913,10 @@ metadata:
   name: sigstack-fulcio-server
   namespace: sigstack
   labels:
-    helm.sh/chart: fulcio-0.4.8
+    helm.sh/chart: fulcio-1.0.0-rc.1
     app.kubernetes.io/name: fulcio
     app.kubernetes.io/instance: sigstack
-    app.kubernetes.io/version: "0.5.2"
+    app.kubernetes.io/version: "1.0.0-rc.1"
     app.kubernetes.io/managed-by: Helm
 spec:
   replicas: 1
@@ -946,7 +927,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: ec1376712e0fb1c5cf66ff46db5cb25b2da3a02b7e9ce1d619cbfeb1bf21d77e
+        checksum/config: 3820777fff80314d48f7e77944c73fa585153c1e49c215ece99911f52ecb97c6
       labels:
         app.kubernetes.io/name: fulcio
         app.kubernetes.io/instance: sigstack
@@ -956,7 +937,7 @@ spec:
       automountServiceAccountToken: true
       containers:
         - name: sigstack-fulcio-server
-          image: "gcr.io/projectsigstore/fulcio@sha256:688dad4c2dadc2e66d47f4cf309fe3632d0a08175268fd6350eff650e811119a"
+          image: "gcr.io/projectsigstore/fulcio@sha256:91e1776a6f0baa9e399a5e7f5f7f6ea14815805750a0a28695896b9b7a24f81d"
           imagePullPolicy: "IfNotPresent"
           ports:            
             - containerPort: 5555
@@ -1058,14 +1039,14 @@ spec:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: trillian-mysql
+                  name: rekor-db-secrets
                   key: mysql-root-password
             - name: MYSQL_USER
               value: "mysql"
             - name: MYSQL_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: trillian-mysql
+                  name: rekor-db-secrets
                   key: mysql-password
             - name: MYSQL_DATABASE
               value: trillian
@@ -1151,17 +1132,17 @@ spec:
             - name: MYSQL_USER
               valueFrom:
                 secretKeyRef:
-                  name: trillian-mysql
+                  name: rekor-db-secrets
                   key: mysql-user
             - name: MYSQL_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: trillian-mysql
+                  name: rekor-db-secrets
                   key: mysql-password
             - name: MYSQL_DATABASE
               valueFrom:
                 secretKeyRef:
-                  name: trillian-mysql
+                  name: rekor-db-secrets
                   key: mysql-database
             - name: MYSQL_HOSTNAME
               value: trillian-mysql
@@ -1224,17 +1205,17 @@ spec:
             - name: MYSQL_USER
               valueFrom:
                 secretKeyRef:
-                  name: trillian-mysql
+                  name: rekor-db-secrets
                   key: mysql-user
             - name: MYSQL_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: trillian-mysql
+                  name: rekor-db-secrets
                   key: mysql-password
             - name: MYSQL_DATABASE
               valueFrom:
                 secretKeyRef:
-                  name: trillian-mysql
+                  name: rekor-db-secrets
                   key: mysql-database
             - name: MYSQL_HOSTNAME
               value: trillian-mysql
@@ -1420,13 +1401,14 @@ metadata:
   name: sigstack-ctlog-createctconfig
   namespace: sigstack
   labels:
-    helm.sh/chart: ctlog-0.2.24
+    helm.sh/chart: ctlog-0.2.27
     app.kubernetes.io/name: ctlog
     app.kubernetes.io/instance: sigstack
     app.kubernetes.io/version: "0.3.0"
     app.kubernetes.io/managed-by: Helm
 spec:
-  backoffLimit: 30
+  ttlSecondsAfterFinished: 3600
+  backoffLimit: 6
   template:
     spec:
       serviceAccountName: sigstack-ctlog-createctconfig
@@ -1470,12 +1452,13 @@ metadata:
   name: ctlog-createtree
   namespace: sigstack
   labels:
-    helm.sh/chart: ctlog-0.2.24
+    helm.sh/chart: ctlog-0.2.27
     app.kubernetes.io/name: ctlog
     app.kubernetes.io/instance: sigstack
     app.kubernetes.io/version: "0.3.0"
     app.kubernetes.io/managed-by: Helm
 spec:
+  ttlSecondsAfterFinished: 3600
   template:
     spec:
       serviceAccountName: ctlog-createtree
@@ -1507,12 +1490,13 @@ metadata:
   name: sigstack-fulcio-createcerts
   namespace: sigstack
   labels:
-    helm.sh/chart: fulcio-0.4.8
+    helm.sh/chart: fulcio-1.0.0-rc.1
     app.kubernetes.io/name: fulcio
     app.kubernetes.io/instance: sigstack
-    app.kubernetes.io/version: "0.5.2"
+    app.kubernetes.io/version: "1.0.0-rc.1"
     app.kubernetes.io/managed-by: Helm
 spec:
+  ttlSecondsAfterFinished: 3600
   template:
     spec:
       serviceAccountName: sigstack-fulcio-createcerts

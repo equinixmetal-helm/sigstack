@@ -13,9 +13,6 @@ ingress:
 
 rekor:
   enabled: true 
-  mysql:
-    auth:
-      existingSecret: rekor-db-secrets
   server:
     ingress:
       enabled: false
@@ -27,6 +24,9 @@ rekor:
     namespace:
       name: "sigstack"
       create: false
+    mysql:
+      auth:
+        existingSecret: rekor-db-secrets
 
 fulcio:
   forceNamespace: "sigstack"
