@@ -87,9 +87,15 @@ rekorDB:
   secrets:
     - name: db-secrets
       espullData:
-        - name: MYSQL_ROOT_PASSWORD
+        - name: mysql-root-password
           key: mysql-root-password
           version: v1
-        - name: MYSQL_PASSWORD
+        - name: mysql-password
           key: mysql-password
+          version: v1
+        - name: mysql-user
+          key: mysql-user
+          version: v1
+        - name: mysql-database
+          key: mysql-database
           version: v1

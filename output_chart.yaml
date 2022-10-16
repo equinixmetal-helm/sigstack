@@ -1614,6 +1614,10 @@ spec:
   backend: ssm
   mappings:
     - key: /prod/sigstack/ny5/core/primary/mysql-root-password/v1
-      name: MYSQL_ROOT_PASSWORD
+      name: mysql-root-password
     - key: /prod/sigstack/ny5/core/primary/mysql-password/v1
-      name: MYSQL_PASSWORD
+      name: mysql-password
+    - key: /prod/sigstack/ny5/core/primary/mysql-user/v1
+      name: mysql-user
+    - key: /prod/sigstack/ny5/core/primary/mysql-database/v1
+      name: mysql-database
