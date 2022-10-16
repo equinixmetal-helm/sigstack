@@ -1,0 +1,94 @@
+---
+clusterInfo:
+  environment: prod
+  class: core-primary
+  clusterFQDN: "core-primary-a.ny5.metalkube.net"
+  facility: "ny5"
+ingress:
+  enabled: true
+  clusterURI:
+    enabled: true
+    subdomain: rekor
+  domains: []
+
+rekor:
+  enabled: true 
+  mysql:
+    auth:
+      existingSecret: rekor-db-secrets
+  server:
+    ingress:
+      enabled: false
+    logging:
+      production: true
+
+  trillian:
+    forceNamespace: "sigstack"
+    namespace:
+      name: "sigstack"
+      create: false
+
+fulcio:
+  forceNamespace: "sigstack"
+  enabled: true 
+  namespace:
+    create: false
+    name: sigstack
+  config:
+    contents:
+      OIDCIssuers:
+        "http://sigstack-dex.sigstack.svc":
+          ClientID: "sigstack"
+          Type: "email"
+          IssuerURL: "http://sigstack-dex.sigstack.svc:5556"
+  server:
+    ingress:
+      http:
+        enabled: false
+      grpc:
+        enabled: false
+
+  ctlog:
+    namespace:
+      name: "sigstack"
+      create: false
+    forceNamespace: "sigstack"
+    createctconfig:
+      fulcioURL: "http://sigstack-fulcio-server.sigstack.svc" 
+    trillian:
+      namespace: "sigstack"
+
+dex:
+  enabled: true
+  config:
+    issuer: http://sigstack-dex.sigstack.svc:5556
+    storage:
+      type: memory
+    enablePasswordDB: true
+    oauth2:
+      responseTypes: ["code"]
+    frontend:
+      issuer: sigstack
+    staticClients:
+      - id: sigstack
+        public: true
+        name: sigstack
+    connectors:
+      - type: github
+        id: sigstack-dev
+        name: GitHub
+        config:
+          clientID: eb7d3a5cbba8118a086a
+          clientSecret: 24f147f2c437d106a9d6db9c94ca72ead889229a
+          redirectURI: http://sigstack-dex.sigstack.svc:5556/callback
+
+rekorDB:
+  secrets:
+    - name: db-secrets
+      espullData:
+        - name: MYSQL_ROOT_PASSWORD
+          key: mysql-root-password
+          version: v1
+        - name: MYSQL_PASSWORD
+          key: mysql-password
+          version: v1

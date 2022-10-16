@@ -1,0 +1,27 @@
+apiVersion: v2
+name: sigstack
+description: Helm chart for running all of our sigstore goodies (rekor, fulcio, trillian,  
+type: application
+
+version: 0.1.0
+
+appVersion: "0.1.0"
+
+dependencies:
+- name: rekor
+  version: "1.0.0-rc.2"
+  repository: "https://sigstore.github.io/helm-charts"
+  condition: rekor.enabled
+- name: fulcio
+  version: "1.0.0-rc.1"
+  repository: "https://sigstore.github.io/helm-charts"
+  condition: fulcio.enabled
+- name: dex
+  version: "0.9.0"
+  repository: "https://charts.dexidp.io"
+  condition: dex.enabled
+- name: common
+  repository: https://charts.bitnami.com/bitnami
+  tags:
+    - bitnami-common
+  version: 2.0.3

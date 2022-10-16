@@ -1,0 +1,24 @@
+{{ template "chart.header" . }}
+{{ template "chart.description" . }}
+
+{{ template "chart.versionBadge" .  }}{{ template "chart.typeBadge" .  }}{{ template "chart.appVersionBadge" .  }}
+
+## Useful commands
+
+The `README` for this chart is auto generated using [helm-docs](https://github.com/norwoodj/helm-docs). If you want to run it manually, you can run:
+
+```sh
+make docs
+```
+
+The [CT (Chart Testing)](https://github.com/helm/chart-testing) tool is used to lint and validate charts. You can run this via:
+
+```sh
+make lint
+```
+
+{{ template "chart.requirementsSection" . }}
+
+{{ template "chart.valuesSection" . }}
+
+{{ template "helm-docs.versionFooter" . }}
