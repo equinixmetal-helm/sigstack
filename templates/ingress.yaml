@@ -1,0 +1,46 @@
+{{- if .Values.ingress.enabled }}
+{{ $hosts := .Values.ingress.domains }}
+{{ $clusterURI := (printf "%s.%s" .Values.ingress.clusterURI.subdomain .Values.clusterInfo.clusterFQDN ) }}
+{{ if .Values.ingress.clusterURI.enabled }}
+{{ $hosts = (prepend .Values.ingress.domains $clusterURI) }}
+{{ end }}
+---
+apiVersion: {{ include "common.capabilities.ingress.apiVersion" . }}
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    argocd.argoproj.io/sync-wave: "20"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      more_set_headers "Facility: {{ .Values.clusterInfo.facility }}";
+  name: {{ template "app.name" . }}
+  labels: {{- include "common.labels.standard" . | nindent 4 }}
+spec:
+  ingressClassName: nginx-external
+  rules:
+    {{- range $hosts }}
+    - host: {{ . }}
+      http:
+        paths:
+          - path: "/v1alpha1"
+            pathType: Prefix
+            backend:
+              service:
+                name:  {{ template "app.name" $ }}
+                port:
+                  name: http
+          - path: "/healthz"
+            pathType: Prefix
+            backend:
+              service:
+                name:  {{ template "app.name" $ }}
+                port:
+                  name: http
+    {{- end }}
+  tls:
+    - hosts:
+        {{- range $hosts }}
+        - {{ . }}
+        {{- end }}
+      secretName: {{ template "app.name" . }}-tls
+{{- end }}
