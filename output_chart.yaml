@@ -1613,7 +1613,7 @@ metadata:
 spec:
   backend: ssm
   mappings:
-    - key: /prod/sigstack/core-primary/mysql-root-password/v1
+    - key: /prod/sigstack/ny5/core/primary/mysql-root-password/v1
       name: MYSQL_ROOT_PASSWORD
-    - key: /prod/sigstack/core-primary/mysql-password/v1
+    - key: /prod/sigstack/ny5/core/primary/mysql-password/v1
       name: MYSQL_PASSWORD
