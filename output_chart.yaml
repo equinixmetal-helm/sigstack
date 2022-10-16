@@ -816,7 +816,7 @@ spec:
         - name: dex
           securityContext:
             {}
-          image: "ghcr.io/dexidp/dex:v2.32.0"
+          image: "ghcr.io/dexidp/dex:v2.35.3"
           imagePullPolicy: IfNotPresent
           args:
             - dex
