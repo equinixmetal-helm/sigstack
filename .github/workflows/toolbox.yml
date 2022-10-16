@@ -1,0 +1,17 @@
+name: Toolbox Image
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  toolbox-image:
+    uses: metal-toolbox/container-push/.github/workflows/container-push.yml@main
+    with:
+      name: toolbox
+      tag: ${GITHUB_REF_NAME}
+      latest: true
+      dockerfile_path: images/toolbox/Dockerfile
+
