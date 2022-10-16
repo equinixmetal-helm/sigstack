@@ -16,10 +16,10 @@ spec:
           args: [
             "sign",
             "--fulcio-url",
-            "http://fulcio-server.fulcio-system.svc",
+            "http://fulcio-server.sigstack.svc",
             "--allow-insecure-registry",
             "--rekor-url",
-            "http://rekor-server.rekor-system.svc",
+            "http://rekor-server.sigstack.svc",
             "--force",
             "ghcr.io/sigstore/scaffolding/checktree@sha256:9ca3cf4d20eb4f6c85929cd873234150d746e69dbb7850914bbd85b97eba1e2f"
           ]
