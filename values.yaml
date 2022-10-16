@@ -27,7 +27,7 @@ rekor:
       create: false
     mysql:
       auth:
-        existingSecret: rekor-db-secrets
+        existingSecret: sigstack-db-secrets
 
 fulcio:
   forceNamespace: "sigstack"

@@ -1039,14 +1039,14 @@ spec:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: rekor-db-secrets
+                  name: sigstack-db-secrets
                   key: mysql-root-password
             - name: MYSQL_USER
               value: "mysql"
             - name: MYSQL_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: rekor-db-secrets
+                  name: sigstack-db-secrets
                   key: mysql-password
             - name: MYSQL_DATABASE
               value: trillian
@@ -1132,17 +1132,17 @@ spec:
             - name: MYSQL_USER
               valueFrom:
                 secretKeyRef:
-                  name: rekor-db-secrets
+                  name: sigstack-db-secrets
                   key: mysql-user
             - name: MYSQL_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: rekor-db-secrets
+                  name: sigstack-db-secrets
                   key: mysql-password
             - name: MYSQL_DATABASE
               valueFrom:
                 secretKeyRef:
-                  name: rekor-db-secrets
+                  name: sigstack-db-secrets
                   key: mysql-database
             - name: MYSQL_HOSTNAME
               value: trillian-mysql
@@ -1205,17 +1205,17 @@ spec:
             - name: MYSQL_USER
               valueFrom:
                 secretKeyRef:
-                  name: rekor-db-secrets
+                  name: sigstack-db-secrets
                   key: mysql-user
             - name: MYSQL_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: rekor-db-secrets
+                  name: sigstack-db-secrets
                   key: mysql-password
             - name: MYSQL_DATABASE
               valueFrom:
                 secretKeyRef:
-                  name: rekor-db-secrets
+                  name: sigstack-db-secrets
                   key: mysql-database
             - name: MYSQL_HOSTNAME
               value: trillian-mysql
@@ -1607,9 +1607,9 @@ spec:
 apiVersion: keymaker.equinixmetal.com/v1
 kind: ExternalSecretPull
 metadata:
-  name: rekor-db-secrets
+  name: sigstack-db-secrets
   labels:
-    k8s-app: rekor
+    k8s-app: sigstack
 spec:
   backend: ssm
   mappings:
