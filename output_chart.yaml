@@ -850,7 +850,7 @@ spec:
       serviceAccountName: ctlog
       containers:
         - name: ctlog
-          image: "ghcr.io/sigstore/scaffolding/ct_server@sha256:7c791d3b7c15e817807f07d4cdb00406529a114702ad448ee857e1d0fc5fb5a9"
+          image: "ghcr.io/sigstore/scaffolding/ct_server@sha256:889400fe5d8d7ffc6873cfa9c774244f7ef7b24ac99108e585c1a9e35b3f461c"
           imagePullPolicy: "IfNotPresent"
           args:
             - "--http_endpoint=0.0.0.0:6962"
