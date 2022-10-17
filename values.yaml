@@ -52,7 +52,7 @@ fulcio:
     contents:
       OIDCIssuers:
         "https://dex.sigstack.core-primary-a.ny5.metalkube.net/auth":
-          ClientID: "sigstack"
+          ClientID: "sigstore"
           Type: "email"
           IssuerURL: "https://dex.sigstack.core-primary-a.ny5.metalkube.net/auth"
   server:
@@ -77,6 +77,12 @@ dex:
   configSecret:
     create: false
     name: sigstack-dex-config
+  envVars:
+  - name: LDAP_BINDPW
+    valueFrom:
+      secretKeyRef:
+        key: ldap-bindpw
+        name: jumpcloud
 
 # TODO: Rename this to sigstack
 rekorDB:

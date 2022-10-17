@@ -212,7 +212,7 @@ data:
     {
       "OIDCIssuers": {
         "https://dex.sigstack.core-primary-a.ny5.metalkube.net/auth": {
-          "ClientID": "sigstack",
+          "ClientID": "sigstore",
           "IssuerURL": "https://dex.sigstack.core-primary-a.ny5.metalkube.net/auth",
           "Type": "email"
         }
@@ -792,6 +792,11 @@ spec:
             - 0.0.0.0:5558
             - /etc/dex/config.yaml
           env:
+            - name: LDAP_BINDPW
+              valueFrom:
+                secretKeyRef:
+                  key: ldap-bindpw
+                  name: jumpcloud
           ports:
             - name: http
               containerPort: 5556
@@ -911,7 +916,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: 95835311ea2080d73bcb18d2834919efc7b42b7bb53bcfa2435f0eb14c4c5ec8
+        checksum/config: d47c7b4280227e70a4fba9fce259d7c1a455f779f64587e6b766c541ad9911e7
       labels:
         app.kubernetes.io/name: fulcio
         app.kubernetes.io/instance: sigstack
@@ -1637,6 +1642,19 @@ spec:
   mappings:
     - key: /prod/sigstack/ny5/core/primary/dex-config/v1
       name: config.yaml
+---
+# Source: sigstack/templates/secret-pull.yaml
+apiVersion: keymaker.equinixmetal.com/v1
+kind: ExternalSecretPull
+metadata:
+  labels:
+    k8s-app: sigstack
+  name: jumpcloud
+spec:
+  backend: ssm
+  mappings:
+    - key: /prod/sigstack/jumpcloud/v1
+      name: ldap-bindpw
 ---
 # Source: sigstack/charts/dex/templates/tests/no-config-secret.yaml
 apiVersion: v1
