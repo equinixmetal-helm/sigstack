@@ -34,11 +34,11 @@ spec:
     {{- end }}
     {{- end }}
   tls:
+    {{- range $host := $hosts }}
+    {{- range $component := $components }}
     - hosts:
-      {{- range $host := $hosts }}
-      {{- range $component := $components }}
         - {{ printf "%s.%s"  $component.subdomain $host }}
       secretName: {{ $component.subdomain }}-tls
-      {{- end }}
-      {{- end }}
+    {{- end }}
+    {{- end }}
 {{- end }}

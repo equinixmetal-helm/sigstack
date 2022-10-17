@@ -1591,8 +1591,10 @@ spec:
     - hosts:
         - rekor.sigstack.core-primary-a.ny5.metalkube.net
       secretName: rekor-tls
+    - hosts:
         - fulcio.sigstack.core-primary-a.ny5.metalkube.net
       secretName: fulcio-tls
+    - hosts:
         - dex.sigstack.core-primary-a.ny5.metalkube.net
       secretName: dex-tls
 ---
