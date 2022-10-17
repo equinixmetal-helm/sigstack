@@ -1410,7 +1410,7 @@ spec:
                   fieldPath: metadata.namespace
       containers:
         - name: sigstack-ctlog-createctconfig
-          image: "ghcr.io/sigstore/scaffolding/createctconfig@sha256:2795b42d3b42cdb9eaf3825e0bca742963208a51e30d5a7173f8a68ac6d47732"
+          image: "ghcr.io/sigstore/scaffolding/createctconfig@sha256:6708f40ed27f4bca4dc0abb4d6261c630ac95755fe63ff15be38500a13944393"
           imagePullPolicy: "IfNotPresent"
           args: [
             "--namespace=$(NAMESPACE)",
