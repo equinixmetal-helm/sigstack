@@ -1,5 +1,6 @@
 ---
 clusterInfo:
+  fqdn: ""
   environment: ""
   class: ""
   subclass: ""
@@ -51,10 +52,10 @@ fulcio:
   config:
     contents:
       OIDCIssuers:
-        "https://dex.sigstack.core-primary-a.ny5.metalkube.net/auth":
+        "https://dex.sigstack.example.com/auth":
           ClientID: "sigstore"
           Type: "email"
-          IssuerURL: "https://dex.sigstack.core-primary-a.ny5.metalkube.net/auth"
+          IssuerURL: "https://dex.sigstack.example.com/auth"
         "https://token.actions.githubusercontent.com":
           IssuerURL: "https://token.actions.githubusercontent.com"
           ClientID: "sigstore"
@@ -87,26 +88,3 @@ dex:
       secretKeyRef:
         key: ldap-bindpw
         name: jumpcloud
-
-# TODO: Rename this to sigstack
-rekorDB:
-  secrets:
-    - name: db-secrets
-      espullData:
-        - name: mysql-root-password
-          key: mysql-root-password
-          version: v1
-        - name: mysql-password
-          key: mysql-password
-          version: v1
-        - name: mysql-user
-          key: mysql-user
-          version: v1
-        - name: mysql-database
-          key: mysql-database
-          version: v1
-    - name: dex-config
-      espullData:
-        - name: config.yaml
-          key: dex-config
-          version: v1

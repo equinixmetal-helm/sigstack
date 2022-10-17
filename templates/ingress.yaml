@@ -1,6 +1,6 @@
 {{- if .Values.ingress.enabled }}
 {{ $hosts := .Values.ingress.domains }}
-{{ $clusterURI := (printf "%s.%s" .Values.ingress.clusterURI.subdomain .Values.clusterInfo.clusterFQDN ) }}
+{{ $clusterURI := (printf "%s.%s" .Values.ingress.clusterURI.subdomain .Values.clusterInfo.fqdn ) }}
 {{ $components := .Values.ingress.components }}
 {{ if .Values.ingress.clusterURI.enabled }}
 {{ $hosts = (prepend .Values.ingress.domains $clusterURI) }}
