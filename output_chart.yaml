@@ -1242,7 +1242,7 @@ spec:
       serviceAccountName: sigstack-rekor-redis
       containers:
         - name: rekor-redis
-          image: "docker.io/redis@sha256:6c42cce2871e8dc5fb3e843ed5c4e7939d312faf5e53ff0ff4ca955a7e0b2b39"
+          image: "docker.io/redis@sha256:2bd864580926b790a22c8b96fd74496fe87b3c59c0774fe144bab2788e78e676"
           imagePullPolicy: "IfNotPresent"
           args:
             - --bind
