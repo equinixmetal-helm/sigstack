@@ -1,10 +1,10 @@
 ---
 clusterInfo:
-  environment: prod
-  class: core
-  subclass: primary
-  clusterFQDN: "core-primary-a.ny5.metalkube.net"
-  facility: "ny5"
+  environment: ""
+  class: ""
+  subclass: ""
+  clusterFQDN: ""
+  facility: ""
 ingress:
   enabled: true
   clusterURI:
