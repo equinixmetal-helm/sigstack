@@ -52,7 +52,7 @@ fulcio:
     contents:
       OIDCIssuers:
         "https://dex.sigstack.core-primary-a.ny5.metalkube.net/auth":
-          ClientID: "oidc-auth-client"
+          ClientID: "sigstack"
           Type: "email"
           IssuerURL: "https://dex.sigstack.core-primary-a.ny5.metalkube.net/auth"
   server:
