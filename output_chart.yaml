@@ -1310,7 +1310,7 @@ spec:
       serviceAccountName: sigstack-rekor-server
       initContainers:
         - name: "wait-for-trillian-log-server"
-          image: "docker.io/curlimages/curl@sha256:dca6e1b1c8e7b8b8e7be4e79fc78a858d12fd56245cb31bfa281dbf7c73a6498"
+          image: "docker.io/curlimages/curl@sha256:f4821d304c3d1fa06dcea4feb2be79f98ff012a8fa3a51943b94e333f69b0098"
           imagePullPolicy: IfNotPresent
           command: ["sh", "-c", "until curl --max-time 10 http://trillian-logserver.sigstack:8090; do echo waiting for trillian-logserver; sleep 5; done;"]
       containers:
@@ -1400,7 +1400,7 @@ spec:
       automountServiceAccountToken: true
       initContainers:
         - name: "wait-for-createtree-configmap"
-          image: "docker.io/curlimages/curl@sha256:dca6e1b1c8e7b8b8e7be4e79fc78a858d12fd56245cb31bfa281dbf7c73a6498"
+          image: "docker.io/curlimages/curl@sha256:f4821d304c3d1fa06dcea4feb2be79f98ff012a8fa3a51943b94e333f69b0098"
           imagePullPolicy: IfNotPresent
           command: ["sh", "-c", "until curl --fail --header \"Authorization: Bearer $(cat /var/run/secrets/kubernetes.io/serviceaccount/token)\" --cacert /var/run/secrets/kubernetes.io/serviceaccount/ca.crt --max-time 10 https://kubernetes.default.svc/api/v1/namespaces/$(NAMESPACE)/configmaps/ctlog-config | grep '\"treeID\":'; do echo waiting for Configmap ctlog-config; sleep 5; done;"]
           env:
