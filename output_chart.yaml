@@ -1315,7 +1315,7 @@ spec:
           command: ["sh", "-c", "until curl --max-time 10 http://trillian-logserver.sigstack:8090; do echo waiting for trillian-logserver; sleep 5; done;"]
       containers:
         - name: rekor-server
-          image: "gcr.io/projectsigstore/rekor-server@sha256:eb351dc8daa63599b41406c4a7eafff6617adf9fc604818349159ccbb60e613a"
+          image: "gcr.io/projectsigstore/rekor-server@sha256:3dadc6f0d718c9aab3beefec2131713b52af89c280aa460220fa2a7ec5ca4205"
           imagePullPolicy: "IfNotPresent"
           env:
             - name: TREE_ID
