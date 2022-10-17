@@ -1450,7 +1450,7 @@ spec:
       automountServiceAccountToken: true
       containers:
         - name: ctlog-createtree
-          image: "ghcr.io/sigstore/scaffolding/createtree@sha256:d5776d8a43632291e1c5a22a9266608db0daa0a11663445d701e327f2205974c"
+          image: "ghcr.io/sigstore/scaffolding/createtree@sha256:22791d2116e01325c35b977e077b8f16266424e9c1582ac577bdd1a932df8c53"
           imagePullPolicy: "IfNotPresent"
           env:
           - name: NAMESPACE
@@ -1521,7 +1521,7 @@ spec:
       automountServiceAccountToken: true
       containers:
         - name: sigstack-rekor-createtree
-          image: "ghcr.io/sigstore/scaffolding/createtree@sha256:03e7b3b068e61f65a730b7a95f498c76a02ddecb4f7a65e09b2753b66ac8399f"
+          image: "ghcr.io/sigstore/scaffolding/createtree@sha256:22791d2116e01325c35b977e077b8f16266424e9c1582ac577bdd1a932df8c53"
           args: ["--namespace=$(NAMESPACE)",
             "--configmap=sigstack-rekor-config",
             "--display_name=rekortree",
