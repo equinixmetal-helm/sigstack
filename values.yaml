@@ -9,7 +9,20 @@ ingress:
   enabled: true
   clusterURI:
     enabled: true
-    subdomain: rekor
+    subdomain: sigstack
+  components:
+    - subdomain: rekor
+      service:
+        name: sigstack-rekor-server
+        portName: 3000-tcp
+    - subdomain: fulcio
+      service:
+        name: sigstack-fulcio-server
+        portName: http
+    - subdomain: dex
+      service:
+        name: sigstack-dex
+        portName: http
   domains: []
 
 rekor:
@@ -38,10 +51,10 @@ fulcio:
   config:
     contents:
       OIDCIssuers:
-        "http://sigstack-dex.sigstack.svc":
+        "https://dex.sigstack.core-primary-a.ny5.metalkube.net/auth":
           ClientID: "sigstack"
           Type: "email"
-          IssuerURL: "http://sigstack-dex.sigstack.svc:5556"
+          IssuerURL: "https://dex.sigstack.core-primary-a.ny5.metalkube.net/auth"
   server:
     ingress:
       http:
@@ -61,28 +74,11 @@ fulcio:
 
 dex:
   enabled: true
-  config:
-    issuer: http://sigstack-dex.sigstack.svc:5556
-    storage:
-      type: memory
-    enablePasswordDB: true
-    oauth2:
-      responseTypes: ["code"]
-    frontend:
-      issuer: sigstack
-    staticClients:
-      - id: sigstack
-        public: true
-        name: sigstack
-    connectors:
-      - type: github
-        id: sigstack-dev
-        name: GitHub
-        config:
-          clientID: eb7d3a5cbba8118a086a
-          clientSecret: 24f147f2c437d106a9d6db9c94ca72ead889229a
-          redirectURI: http://sigstack-dex.sigstack.svc:5556/callback
+  configSecret:
+    create: false
+    name: sigstack-dex-config
 
+# TODO: Rename this to sigstack
 rekorDB:
   secrets:
     - name: db-secrets
@@ -98,4 +94,9 @@ rekorDB:
           version: v1
         - name: mysql-database
           key: mysql-database
+          version: v1
+    - name: dex-config
+      espullData:
+        - name: config.yaml
+          key: dex-config
           version: v1

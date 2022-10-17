@@ -176,21 +176,6 @@ metadata:
   annotations:
     {}
 ---
-# Source: sigstack/charts/dex/templates/secret.yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: sigstack-dex
-  labels:
-    helm.sh/chart: dex-0.12.0
-    app.kubernetes.io/name: dex
-    app.kubernetes.io/instance: sigstack
-    app.kubernetes.io/version: "2.35.1"
-    app.kubernetes.io/managed-by: Helm
-type: Opaque
-data:
-  config.yaml: "Y29ubmVjdG9yczoKLSBjb25maWc6CiAgICBjbGllbnRJRDogZWI3ZDNhNWNiYmE4MTE4YTA4NmEKICAgIGNsaWVudFNlY3JldDogMjRmMTQ3ZjJjNDM3ZDEwNmE5ZDZkYjljOTRjYTcyZWFkODg5MjI5YQogICAgcmVkaXJlY3RVUkk6IGh0dHA6Ly9zaWdzdGFjay1kZXguc2lnc3RhY2suc3ZjOjU1NTYvY2FsbGJhY2sKICBpZDogc2lnc3RhY2stZGV2CiAgbmFtZTogR2l0SHViCiAgdHlwZTogZ2l0aHViCmVuYWJsZVBhc3N3b3JkREI6IHRydWUKZnJvbnRlbmQ6CiAgaXNzdWVyOiBzaWdzdGFjawppc3N1ZXI6IGh0dHA6Ly9zaWdzdGFjay1kZXguc2lnc3RhY2suc3ZjOjU1NTYKb2F1dGgyOgogIHJlc3BvbnNlVHlwZXM6CiAgLSBjb2RlCnN0YXRpY0NsaWVudHM6Ci0gaWQ6IHNpZ3N0YWNrCiAgbmFtZTogc2lnc3RhY2sKICBwdWJsaWM6IHRydWUKc3RvcmFnZToKICB0eXBlOiBtZW1vcnk="
----
 # Source: sigstack/charts/fulcio/charts/ctlog/templates/ctlog-configmap.yaml
 apiVersion: v1
 kind: ConfigMap
@@ -226,9 +211,9 @@ data:
   config.json: |-
     {
       "OIDCIssuers": {
-        "http://sigstack-dex.sigstack.svc": {
+        "https://dex.sigstack.core-primary-a.ny5.metalkube.net/auth": {
           "ClientID": "sigstack",
-          "IssuerURL": "http://sigstack-dex.sigstack.svc:5556",
+          "IssuerURL": "https://dex.sigstack.core-primary-a.ny5.metalkube.net/auth",
           "Type": "email"
         }
       }
@@ -785,7 +770,6 @@ spec:
     metadata:
       annotations:
       
-        checksum/config: 7a5d700caab070581e767e1bf84f9743d7ddcbbe3a81ad3c726d17282cd5e5ab
       labels:
         app.kubernetes.io/name: dex
         app.kubernetes.io/instance: sigstack
@@ -832,7 +816,7 @@ spec:
       volumes:
         - name: config
           secret:
-            secretName: sigstack-dex
+            secretName: sigstack-dex-config
 ---
 # Source: sigstack/charts/fulcio/charts/ctlog/templates/ctlog-deployment.yaml
 apiVersion: apps/v1
@@ -927,7 +911,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: 3820777fff80314d48f7e77944c73fa585153c1e49c215ece99911f52ecb97c6
+        checksum/config: 95835311ea2080d73bcb18d2834919efc7b42b7bb53bcfa2435f0eb14c4c5ec8
       labels:
         app.kubernetes.io/name: fulcio
         app.kubernetes.io/instance: sigstack
@@ -1571,29 +1555,46 @@ metadata:
     app.kubernetes.io/instance: sigstack
     app.kubernetes.io/managed-by: Helm
 spec:
-  ingressClassName: nginx-external
+  ingressClassName: nginx
   rules:
-    - host: rekor.core-primary-a.ny5.metalkube.net
+    - host: rekor.sigstack.core-primary-a.ny5.metalkube.net
       http:
         paths:
-          - path: "/v1alpha1"
+          - path: "/"
             pathType: Prefix
             backend:
               service:
-                name:  sigstack
+                name:  sigstack-rekor-server
+                port:
+                  name: 3000-tcp
+    - host: fulcio.sigstack.core-primary-a.ny5.metalkube.net
+      http:
+        paths:
+          - path: "/"
+            pathType: Prefix
+            backend:
+              service:
+                name:  sigstack-fulcio-server
                 port:
                   name: http
-          - path: "/healthz"
+    - host: dex.sigstack.core-primary-a.ny5.metalkube.net
+      http:
+        paths:
+          - path: "/"
             pathType: Prefix
             backend:
               service:
-                name:  sigstack
+                name:  sigstack-dex
                 port:
                   name: http
   tls:
     - hosts:
-        - rekor.core-primary-a.ny5.metalkube.net
-      secretName: sigstack-tls
+        - rekor.sigstack.core-primary-a.ny5.metalkube.net
+      secretName: rekor-tls
+        - fulcio.sigstack.core-primary-a.ny5.metalkube.net
+      secretName: fulcio-tls
+        - dex.sigstack.core-primary-a.ny5.metalkube.net
+      secretName: dex-tls
 ---
 # Source: sigstack/templates/cluster-issuer.yaml
 apiVersion: cert-manager.io/v1
@@ -1621,3 +1622,33 @@ spec:
       name: mysql-user
     - key: /prod/sigstack/ny5/core/primary/mysql-database/v1
       name: mysql-database
+---
+# Source: sigstack/templates/secret-pull.yaml
+apiVersion: keymaker.equinixmetal.com/v1
+kind: ExternalSecretPull
+metadata:
+  name: sigstack-dex-config
+  labels:
+    k8s-app: sigstack
+spec:
+  backend: ssm
+  mappings:
+    - key: /prod/sigstack/ny5/core/primary/dex-config/v1
+      name: config.yaml
+---
+# Source: sigstack/charts/dex/templates/tests/no-config-secret.yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: sigstack-dex-config-test-no-create
+  labels:
+    helm.sh/chart: dex-0.12.0
+    app.kubernetes.io/name: dex
+    app.kubernetes.io/instance: sigstack
+    app.kubernetes.io/version: "2.35.1"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    "helm.sh/hook": test
+type: Opaque
+data:
+  config.yaml: "e30="
