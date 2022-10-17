@@ -1099,7 +1099,7 @@ spec:
       serviceAccountName: trillian-logserver
       initContainers:
         - name: "wait-for-trillian-db"
-          image: "docker.io/toolbelt/netcat@sha256:7d921b6d368fb1736cb0832c6f57e426c161593c075847af3378eb3185801cea"
+          image: "docker.io/toolbelt/netcat@sha256:06518e2c2723cf4822dd253cf3410adf7a8d0540665036336d8a6f5d3b9531ee"
           imagePullPolicy: IfNotPresent
           command: ["sh", "-c", "until nc -z -w 10 trillian-mysql 3306; do echo waiting for trillian-mysql; sleep 5; done;"]
       containers:
@@ -1171,7 +1171,7 @@ spec:
       serviceAccountName: trillian-logsigner
       initContainers:
         - name: "wait-for-trillian-db"
-          image: "docker.io/toolbelt/netcat@sha256:7d921b6d368fb1736cb0832c6f57e426c161593c075847af3378eb3185801cea"
+          image: "docker.io/toolbelt/netcat@sha256:06518e2c2723cf4822dd253cf3410adf7a8d0540665036336d8a6f5d3b9531ee"
           imagePullPolicy: IfNotPresent
           command: ["sh", "-c", "until nc -z -w 10 trillian-mysql 3306; do echo waiting for trillian-mysql; sleep 5; done;"]
       containers:
