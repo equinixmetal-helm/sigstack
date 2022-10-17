@@ -215,6 +215,11 @@ data:
           "ClientID": "sigstore",
           "IssuerURL": "https://dex.sigstack.core-primary-a.ny5.metalkube.net/auth",
           "Type": "email"
+        },
+        "https://token.actions.githubusercontent.com": {
+          "ClientID": "sigstore",
+          "IssuerURL": "https://token.actions.githubusercontent.com",
+          "Type": "github-workflow"
         }
       }
     }
@@ -916,7 +921,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: d47c7b4280227e70a4fba9fce259d7c1a455f779f64587e6b766c541ad9911e7
+        checksum/config: 209035b7fbadf7e395b34dd3f0852a1c2ecf13f6d1e389b67882c0803cdd23e2
       labels:
         app.kubernetes.io/name: fulcio
         app.kubernetes.io/instance: sigstack

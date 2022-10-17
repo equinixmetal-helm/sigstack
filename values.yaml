@@ -55,6 +55,10 @@ fulcio:
           ClientID: "sigstore"
           Type: "email"
           IssuerURL: "https://dex.sigstack.core-primary-a.ny5.metalkube.net/auth"
+        "https://token.actions.githubusercontent.com":
+          IssuerURL: "https://token.actions.githubusercontent.com"
+          ClientID: "sigstore"
+          Type: "github-workflow"
   server:
     ingress:
       http:
