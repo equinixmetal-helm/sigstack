@@ -212,7 +212,7 @@ data:
     {
       "OIDCIssuers": {
         "https://dex.sigstack.core-primary-a.ny5.metalkube.net/auth": {
-          "ClientID": "sigstack",
+          "ClientID": "oidc-auth-client",
           "IssuerURL": "https://dex.sigstack.core-primary-a.ny5.metalkube.net/auth",
           "Type": "email"
         }
@@ -911,7 +911,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: 95835311ea2080d73bcb18d2834919efc7b42b7bb53bcfa2435f0eb14c4c5ec8
+        checksum/config: fac3e7608aec4e29d82415b78e74329a865dc80ee1a9f000941f61a16eb6e674
       labels:
         app.kubernetes.io/name: fulcio
         app.kubernetes.io/instance: sigstack
