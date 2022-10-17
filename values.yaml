@@ -1,5 +1,6 @@
 ---
 clusterInfo:
+  fqdn: ""
   environment: ""
   class: ""
   subclass: ""
