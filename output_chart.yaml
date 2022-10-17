@@ -1488,7 +1488,7 @@ spec:
       automountServiceAccountToken: true
       containers:
         - name: sigstack-fulcio-createcerts
-          image: "ghcr.io/sigstore/scaffolding/createcerts@sha256:73e7ac35d0e5169bd14a5cb6caed2e7d44277dec3d1de92e08f4d055523089a1"
+          image: "ghcr.io/sigstore/scaffolding/createcerts@sha256:cefda671ce8e0e6d4b9c778b3d8c152bd8318cb933a1df30e2097541b6127fc4"
           imagePullPolicy: "IfNotPresent"
           args: ["--secret=sigstack-fulcio-server-secret"]
           env:
