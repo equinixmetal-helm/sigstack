@@ -1015,7 +1015,7 @@ spec:
       serviceAccountName: trillian-mysql
       containers:
         - name: trillian-mysql
-          image: "gcr.io/trillian-opensource-ci/db_server@sha256:22b7fddcb4bafc5692760d84dca5e86294363a94e8f0ecb8f5c39364d436e6d5"
+          image: "gcr.io/trillian-opensource-ci/db_server@sha256:44c8cdd696a2fbb2a63a70875774789e2b2368681b9115589f669a5191480fe2"
           imagePullPolicy: "IfNotPresent"
           args:
             - --ignore-db-dir=lost+found
