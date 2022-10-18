@@ -7,9 +7,9 @@ dependencies:
   version: 1.0.0
 - name: dex
   repository: https://charts.dexidp.io
-  version: 0.12.0
+  version: 0.12.1
 - name: common
   repository: https://charts.bitnami.com/bitnami
   version: 2.0.3
-digest: sha256:5ac1bcbf3b9c165ab1e58989f70e01af065c950faafeb1a3971a62077e08ca9f
-generated: "2022-10-18T01:51:50.439317341Z"
+digest: sha256:ba57fae3edb0ed55bc1a85d8c67bb69a59d61e2ab5a4b6619176bfdcf7fc22fa
+generated: "2022-10-18T01:54:12.140387724Z"
