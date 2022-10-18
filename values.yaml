@@ -49,17 +49,6 @@ fulcio:
   namespace:
     create: false
     name: sigstack
-  config:
-    contents:
-      OIDCIssuers:
-        "https://dex.sigstack.example.com/auth":
-          ClientID: "sigstore"
-          Type: "email"
-          IssuerURL: "https://dex.sigstack.example.com/auth"
-        "https://token.actions.githubusercontent.com":
-          IssuerURL: "https://token.actions.githubusercontent.com"
-          ClientID: "sigstore"
-          Type: "github-workflow"
   server:
     ingress:
       http:
