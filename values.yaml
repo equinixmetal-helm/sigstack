@@ -82,9 +82,3 @@ dex:
   configSecret:
     create: false
     name: sigstack-dex-config
-  envVars:
-  - name: LDAP_BINDPW
-    valueFrom:
-      secretKeyRef:
-        key: ldap-bindpw
-        name: jumpcloud
