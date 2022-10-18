@@ -11,7 +11,7 @@ spec:
       containers:
         - name: cosign
           # Built from ci on 2022-03-15
-          image: gcr.io/projectsigstore/cosign:v1.13.0
+          image: gcr.io/projectsigstore/cosign:v1.13.1
           args: [
             "verify",
             "--allow-insecure-registry",
