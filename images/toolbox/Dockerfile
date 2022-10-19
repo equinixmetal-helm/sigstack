@@ -1,6 +1,6 @@
 FROM gcr.io/projectsigstore/cosign:v1.13.1 AS cosign
 
-FROM gcr.io/go-containerregistry/crane:v0.11.0 AS crane
+FROM gcr.io/go-containerregistry/crane:v0.12.0 AS crane
 
 FROM registry.fedoraproject.org/fedora-minimal:38
 
