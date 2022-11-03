@@ -4,12 +4,12 @@ dependencies:
   version: 1.0.0
 - name: fulcio
   repository: https://sigstore.github.io/helm-charts
-  version: 1.0.0
+  version: 2.0.0
 - name: dex
   repository: https://charts.dexidp.io
   version: 0.12.1
 - name: common
   repository: https://charts.bitnami.com/bitnami
   version: 2.1.1
-digest: sha256:cce3d26e312bf6c9c812c7a0e9b9a2b8af1afb8922c11beea304d0b1b7710949
-generated: "2022-10-28T09:55:18.221437501Z"
+digest: sha256:dad040fe93349e944edd3bf3a74a9e2f1d86e0510d56e3e5eec4332d736deb18
+generated: "2022-11-03T15:11:35.913263277Z"
