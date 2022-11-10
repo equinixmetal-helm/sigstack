@@ -9,7 +9,7 @@ appVersion: "0.1.0"
 
 dependencies:
 - name: rekor
-  version: "1.0.0"
+  version: "1.0.1"
   repository: "https://sigstore.github.io/helm-charts"
   condition: rekor.enabled
 - name: fulcio
