@@ -17,7 +17,7 @@ dependencies:
   repository: "https://sigstore.github.io/helm-charts"
   condition: fulcio.enabled
 - name: dex
-  version: "0.12.1"
+  version: "0.13.0"
   repository: "https://charts.dexidp.io"
   condition: dex.enabled
 - name: common
