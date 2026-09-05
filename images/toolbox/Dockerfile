@@ -1,4 +1,4 @@
-FROM gcr.io/projectsigstore/cosign:v1.13.1 AS cosign
+FROM gcr.io/projectsigstore/cosign:v1.13.6 AS cosign
 
 FROM gcr.io/go-containerregistry/crane:v0.12.0 AS crane
 
